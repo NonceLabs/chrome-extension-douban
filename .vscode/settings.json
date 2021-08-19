@@ -1,0 +1,15 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.jsxSingleQuote": false,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "cSpell.words": [
+    "THEGRAPH",
+    "TOKENLON",
+    "consenlabs"
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

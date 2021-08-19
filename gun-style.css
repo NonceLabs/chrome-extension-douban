@@ -1,0 +1,52 @@
+.gun-button {
+  margin-left: 10px;
+  color: #008cd5;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+.gun-button:hover {
+  color: white;
+  background-color: #008cd5;
+}
+
+#i-modal {
+  z-index: 1001;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.i-modal-body {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 200px;
+}
+
+.i-modal-body .doulist {
+  border: 1px solid #e3e3e3;
+}
+
+.doulist p {
+  font-size: 18px;
+  border-bottom: 1px solid #e3e3e3;
+  margin: 0;
+  padding: 10px 8px;
+  cursor: pointer;
+}
+
+.doulist p:hover {
+  background: #e3e3e3;
+}
+
+.doulist p:last-child {
+  border-bottom: 0;
+}
