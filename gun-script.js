@@ -1,37 +1,48 @@
 const gun = Gun('https://dougun.herokuapp.com/gun')
 
-const uid = 'chezhevip'
+let uid
 const _list = []
 
-const userList = gun.get(uid)
-userList.map().on(function (item, id) {
-  _list.push(item)
-})
+init()
 
-const statuses = document.getElementsByClassName('new-status')
-
-for (let index = 0; index < statuses.length; index++) {
-  const status = statuses[index]
-  const actions = status.getElementsByClassName('actions')
-
-  const span = document.createElement('SPAN')
-  span.innerText = '收藏到豆列'
-  span.className = 'gun-button'
-  span.addEventListener('click', function (e) {
-    e.preventDefault()
-    const uid = status.dataset.uid
-    const sid = status.dataset.sid
-
-    const createdAt = status.getElementsByClassName('created_at')[0]
-    createdAt.innerText = createdAt.getAttribute('title')
-
-    openModal({
-      uid,
-      sid,
-      content: status.innerHTML,
-    })
+async function init() {
+  chrome.storage.sync.get('uid', (data) => {
+    uid = data.uid
+    updateDOM(uid)
   })
-  actions[0].appendChild(span)
+}
+
+function updateDOM(uid) {
+  const userList = gun.get(uid)
+  userList.map().on(function (item, id) {
+    _list.push(item)
+  })
+
+  const statuses = document.getElementsByClassName('new-status')
+
+  for (let index = 0; index < statuses.length; index++) {
+    const status = statuses[index]
+    const actions = status.getElementsByClassName('actions')
+
+    const span = document.createElement('SPAN')
+    span.innerText = '收藏到豆列'
+    span.className = 'gun-button'
+    span.addEventListener('click', function (e) {
+      e.preventDefault()
+      const uid = status.dataset.uid
+      const sid = status.dataset.sid
+
+      const createdAt = status.getElementsByClassName('created_at')[0]
+      createdAt.innerText = createdAt.getAttribute('title')
+
+      openModal({
+        uid,
+        sid,
+        content: status.outerHTML,
+      })
+    })
+    actions[0].appendChild(span)
+  }
 }
 
 function saveTo(listName, data) {
