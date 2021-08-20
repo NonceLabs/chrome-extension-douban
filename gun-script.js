@@ -1,4 +1,4 @@
-const gun = Gun('https://dougun.herokuapp.com/gun')
+const gun = Gun('https://doujia.herokuapp.com/gun')
 
 let uid
 const _list = []
@@ -8,7 +8,9 @@ init()
 async function init() {
   chrome.storage.sync.get('uid', (data) => {
     uid = data.uid
-    updateDOM(uid)
+    if (uid) {
+      updateDOM(uid)
+    }
   })
 }
 
@@ -25,7 +27,7 @@ function updateDOM(uid) {
     const actions = status.getElementsByClassName('actions')
 
     const span = document.createElement('SPAN')
-    span.innerText = '收藏到豆列'
+    span.innerText = '收藏到[豆荚]'
     span.className = 'gun-button'
     span.addEventListener('click', function (e) {
       e.preventDefault()
@@ -38,7 +40,7 @@ function updateDOM(uid) {
       openModal({
         uid,
         sid,
-        content: status.outerHTML,
+        content: status.outerHTML.replace(/(\r\n|\n|\r)/gm, ''),
       })
     })
     actions[0].appendChild(span)

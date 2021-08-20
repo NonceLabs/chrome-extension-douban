@@ -21,7 +21,7 @@ async function init() {
   chrome.storage.sync.set({ uid })
 
   if (uid) {
-    const gun = Gun('https://dougun.herokuapp.com/gun')
+    const gun = Gun('https://doujia.herokuapp.com/gun')
 
     const doulist = gun.get(uid)
 
@@ -39,7 +39,7 @@ async function init() {
       const pItem = document.createElement('p')
       list.append(pItem)
       pItem.className = 'item'
-      pItem.innerHTML = `<a href="https://douban.chezhe.dev/u/${uid}?listName=${item}" target="_blank">${item}</a>`
+      pItem.innerHTML = `<a href="https://doujia.chezhe.dev/u/${uid}?listName=${item}" target="_blank">${item}</a>`
     })
 
     input.addEventListener('keyup', function (e) {

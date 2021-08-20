@@ -33,6 +33,13 @@
 
 .i-modal-body .doulist {
   border: 1px solid #e3e3e3;
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.doulist::-webkit-scrollbar {
+  display: none;
 }
 
 .doulist p {

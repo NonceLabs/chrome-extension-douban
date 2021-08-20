@@ -1,9 +1,9 @@
 {
-  "name": "Douban gun",
-  "description": "Save douban broadcast",
+  "name": "豆荚",
+  "description": "豆列替代品",
   "version": "1.0",
   "manifest_version": 3,
-  "homepage_url": "https://douban.chezhe.dev/",
+  "homepage_url": "https://doujia.chezhe.dev/",
   "permissions": ["storage", "scripting", "cookies"],
   "host_permissions": ["*://*.douban.com/"],
   "action": {
