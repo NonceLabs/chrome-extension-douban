@@ -1,6 +1,6 @@
 {
   "name": "豆荚",
-  "description": "豆列替代品",
+  "description": "去中心化分类保存豆瓣广播",
   "version": "1.0",
   "manifest_version": 3,
   "homepage_url": "https://doujia.chezhe.dev/",
