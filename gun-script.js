@@ -21,6 +21,49 @@ function updateDOM(uid) {
   })
 
   const statuses = document.getElementsByClassName('new-status')
+  const topics = document.getElementsByClassName('article')
+
+  for (let index = 0; index < topics.length; index++) {
+    const topic = topics[index]
+    const actions = topic.getElementsByClassName('sns-bar')
+
+    const span = document.createElement('SPAN')
+    span.innerText = '收藏到[豆荚]'
+    span.className = 'gun-button'
+    span.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      const userFace = topic.getElementsByClassName('user-face')
+      let uid = ''
+      let isTopic = true
+      if (userFace && userFace.length === 1) {
+        const userLink = userFace[0].getElementsByTagName('a')[0]
+        // topic
+        uid = userLink[0].getAttribute('href')
+      } else {
+        isTopic = false
+        const noteUserLink = topic.getElementsByClassName('note-author')
+        if (noteUserLink && noteUserLink.length === 1) {
+          uid = noteUserLink[0].getAttribute('href')
+        }
+      }
+
+      const sid = window.location.href
+
+      let content = ''
+      if (isTopic) {
+        content = document.getElementById('topic-content')
+      } else {
+        content = document.getElementsByClassName('note-container')[0]
+      }
+      openModal({
+        uid,
+        sid,
+        content: content.outerHTML.replace(/(\r\n|\n|\r)/gm, ''),
+      })
+    })
+    actions[0].appendChild(span)
+  }
 
   for (let index = 0; index < statuses.length; index++) {
     const status = statuses[index]

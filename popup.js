@@ -25,13 +25,12 @@ async function init() {
 
     const doulist = gun.get(uid)
 
+    const modal = document.getElementById('modal')
     const input = document.getElementById('input')
-    const button = document.getElementById('create')
+    const createBtn = document.getElementById('create')
+    const confirmBtn = document.getElementById('confirm')
+    const errorMsg = document.getElementById('error')
     const list = document.getElementById('doulist')
-
-    button.addEventListener('click', () => {
-      input.style = 'display: block'
-    })
 
     const _list = []
     doulist.map().on(function (item, id) {
@@ -39,16 +38,41 @@ async function init() {
       const pItem = document.createElement('p')
       list.append(pItem)
       pItem.className = 'item'
-      pItem.innerHTML = `<a href="https://doujia.chezhe.dev/u/${uid}?listName=${item}" target="_blank">${item}</a>`
+      pItem.innerHTML = `<a href="https://doujia.chezhe.dev/u/${uid}?listName=${item}" target="_blank"><span>${item}</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></a>`
+    })
+
+    createBtn.addEventListener('click', () => {
+      modal.style = 'display: block'
+    })
+
+    confirmBtn.addEventListener('click', () => {
+      createList()
     })
 
     input.addEventListener('keyup', function (e) {
+      errorMsg.style = 'display:none'
       if (e.key === 'Enter') {
         e.preventDefault()
-        const name = e.target.value
-        doulist.set(name)
-        input.style = 'display: none'
+        createList()
       }
     })
+
+    function createList() {
+      const name = input.value.trim()
+      if (!name) {
+        errorMsg.innerText = '名称不能为空'
+        errorMsg.style = 'display:block'
+        return
+      }
+
+      if (_list.includes(name)) {
+        errorMsg.innerText = '已存在相同名称豆荚'
+        errorMsg.style = 'display:block'
+        return
+      }
+
+      doulist.set(name)
+      modal.style = 'display: none'
+    }
   }
 }

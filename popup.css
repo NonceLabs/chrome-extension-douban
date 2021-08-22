@@ -18,7 +18,7 @@ button.current {
   box-shadow: 0 0 0 2px white, 0 0 0 4px black;
 }
 
-#create {
+button {
   width: 200px;
   background: #008cd5;
   height: 30px;
@@ -35,11 +35,22 @@ button.current {
 #input {
   font-size: 18px;
   line-height: 32px;
-  width: 180px;
+  width: 160px;
   border-radius: 0;
   border: 1px solid #008cd5;
   padding: 0 8px;
   box-sizing: border-box;
+}
+
+#modal {
+  width: 200px;
+  height: 300px;
+  position: fixed;
+  z-index: 100;
+  padding: 20px;
+  background: white;
+  left: 0;
+  top: 0;
 }
 
 .item {
@@ -52,4 +63,15 @@ button.current {
   text-decoration: none;
   color: #008cd5;
   font-size: 16px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+
+#error {
+  color: red;
+  font-size: 14px;
+  font-style: italic;
 }
